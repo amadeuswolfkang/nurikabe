@@ -16,3 +16,7 @@
     height: 50px;
     width: 50px;
 }
+
+.cell.black {
+    background-color: black;
+}

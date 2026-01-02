@@ -10,7 +10,7 @@ const Grid = () => {
       {matrix.map((row, rowIndex) =>
         row.map((col, colIndex) =>
         <div key={`${rowIndex}, ${colIndex}`}>
-            <div className="cell" />
+            <div className="cell" onClick={(e) => e.currentTarget.classList.toggle("black")}/>
         </div>)
       )}
     </div>
