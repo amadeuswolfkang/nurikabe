@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import Grid from "./components/Grid";
+import Grid from "./components/grid/Grid";
 import './App.css';
 
 function App() {
