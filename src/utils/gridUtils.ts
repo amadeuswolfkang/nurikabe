@@ -7,7 +7,7 @@ export const createBlankGrid = (): CellData[][] => {
     Array.from({ length: DIMENSIONS }, (_, columnIndex) => ({
       rowIndex,
       columnIndex,
-      color: "white"
+      color: "white",
     }))
   );
 };
