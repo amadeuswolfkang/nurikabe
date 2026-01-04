@@ -10,3 +10,8 @@
 .cell.white {
     background-color: white;
 }
+
+.number {
+    font-size: 32px;
+    font-weight: bold;
+}
