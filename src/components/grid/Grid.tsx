@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./Grid.css";
-import { createBlankGrid } from "../../utils/gridUtils";
+import { createSamplePuzzle } from "../../utils/gridUtils";
 import { Cell } from "../cell/Cell";
 
 const Grid = () => {
-  const [grid, setGrid] = useState(createBlankGrid);
+  const [grid, setGrid] = useState(createSamplePuzzle);
 
   const toggleCell = (rowIndex: number, columnIndex: number) => {
     setGrid(prevGrid =>
@@ -14,12 +14,12 @@ const Grid = () => {
           ? { ...cell, color: cell.color === "white" ? "black" : "white" }
           : cell
         )
-      ));
+    ));
   };
 
   return (
     <div className="grid">
-      {grid.map((row, rowIndex) =>
+      {grid.map((row) =>
         row.map(cell =>
           <Cell
             key={`${cell.rowIndex}, ${cell.columnIndex}`}
