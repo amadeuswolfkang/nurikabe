@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Grid.css";
-import { createSamplePuzzle } from "../../utils/gridUtils";
+import { createSamplePuzzle, createEasyPuzzle, checkIslands } from "../../utils/gridUtils";
 import { Cell } from "../cell/Cell";
 
 const Grid = () => {
   const [grid, setGrid] = useState(createSamplePuzzle);
+  //const [grid, setGrid] = useState(createEasyPuzzle);
+
+  useEffect(() => {
+    checkIslands(grid);
+  }, [grid])
 
   const toggleCell = (rowIndex: number, columnIndex: number) => {
     setGrid(prevGrid =>

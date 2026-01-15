@@ -2,6 +2,8 @@
     display: grid;
     grid-template-columns: repeat(9, 50px);
     grid-template-rows: repeat(9, 50px);
+    /* grid-template-columns: repeat(3, 50px);
+    grid-template-rows: repeat(3, 50px); */
     background-color: black;
     gap: 1px;
     width: 459px;
