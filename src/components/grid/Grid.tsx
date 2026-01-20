@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Grid.css";
-import { createSamplePuzzle, createEasyPuzzle, checkIslands } from "../../utils/gridUtils";
+import { createSamplePuzzle, createEasyPuzzle, checkIslands, checkSea } from "../../utils/gridUtils";
 import { Cell } from "../cell/Cell";
 
 const Grid = () => {
@@ -9,6 +9,7 @@ const Grid = () => {
 
   useEffect(() => {
     checkIslands(grid);
+    checkSea(grid);
   }, [grid])
 
   const toggleCell = (rowIndex: number, columnIndex: number) => {
