@@ -75,16 +75,16 @@ export const checkSea = (grid: CellData[][]) => {
   }
 
   if (totalSeaCount === 0) {
-    console.log("checkSea false")
+    console.log("checkSea false");
     return false;
   }
   const connectedSeaCount = floodFill(grid, startRow, startCol, visited, "black");
 
   if (totalSeaCount !== connectedSeaCount) {
-    console.log("checkSea false")
-    return false
+    console.log("checkSea false");
+    return false;
   }
-  console.log("checkSea true")
+  console.log("checkSea true");
   return true;
 };
 
