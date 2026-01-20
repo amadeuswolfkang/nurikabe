@@ -1,4 +1,4 @@
-import { CellData } from "../components/cell/types";
+import { CellData, CellColor } from "../components/cell/types";
 
 export const DIMENSIONS = 9;
 export const EASY_DIMENSIONS = 3;
@@ -25,7 +25,8 @@ const floodFill = (
   grid: CellData[][],
   startingRow: number,
   startingCol: number,
-  visited: boolean[][]
+  visited: boolean[][],
+  color: CellColor
 ) => {
   const stack: [number, number][] = [[startingRow, startingCol]];
   let size = 0;
@@ -37,7 +38,7 @@ const floodFill = (
       continue;
     }
     if (visited[row][col]) continue;
-    if (grid[row][col].color !== "white") continue;
+    if (grid[row][col].color !== color) continue;
 
     visited[row][col] = true;
     size++;
@@ -50,6 +51,43 @@ const floodFill = (
   return size;
 };
 
+export const checkSea = (grid: CellData[][]) => {
+    const visited = Array.from({ length: grid.length }, () =>
+      Array(grid[0].length).fill(false)
+  );
+
+  let totalSeaCount = 0;
+  let startRow = -1;
+  let startCol = -1;
+  for (let row = 0; row < grid.length; row++) {
+    for (let col = 0; col < grid[0].length; col++) {
+      const cell = grid[row][col];
+
+      if (cell.color === "black") {
+        totalSeaCount++;
+
+        if (startRow === -1) {
+          startRow = row;
+          startCol = col;
+        }
+      }
+    }
+  }
+
+  if (totalSeaCount === 0) {
+    console.log("checkSea false")
+    return false;
+  }
+  const connectedSeaCount = floodFill(grid, startRow, startCol, visited, "black");
+
+  if (totalSeaCount !== connectedSeaCount) {
+    console.log("checkSea false")
+    return false
+  }
+  console.log("checkSea true")
+  return true;
+};
+
 export const checkIslands = (grid: CellData[][]) => {
   const visited = Array.from({ length: grid.length }, () =>
     Array(grid[0].length).fill(false)
@@ -60,15 +98,15 @@ export const checkIslands = (grid: CellData[][]) => {
       const cell = grid[row][col];
 
       if (cell.number && !visited[row][col]) {
-        const islandSize = floodFill(grid, row, col, visited);
+        const islandSize = floodFill(grid, row, col, visited, "white");
         if (islandSize !== cell.number) {
-          console.log(false);
+          console.log("checkIslands false");
           return false;
         }
       }
     }
   }
-  console.log(true);
+  console.log("checkIslands true");
   return true;
 };
 
