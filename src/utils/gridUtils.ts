@@ -51,9 +51,33 @@ const floodFill = (
   return size;
 };
 
+export const checkPools = (grid: CellData[][]) => {
+  for (let row = 0; row < grid.length - 1; row++) {
+    for (let col = 0; col < grid[0].length - 1; col++) {
+      const topLeftCell = grid[row][col];
+      const topRightCell = grid[row + 1][col];
+      const bottomLeftCell = grid[row][col + 1];
+      const bottomRightCell = grid[row + 1][col + 1];
+
+      if (
+        topLeftCell.color === "black"
+        && topRightCell.color === "black"
+        && bottomLeftCell.color === "black"
+        && bottomRightCell.color === "black"
+      ) {
+        console.log("CheckPools false");
+        return false;
+      }
+    }
+  }
+  console.log("CheckPools true");
+  return true;
+};
+
+
 export const checkSea = (grid: CellData[][]) => {
-    const visited = Array.from({ length: grid.length }, () =>
-      Array(grid[0].length).fill(false)
+  const visited = Array.from({ length: grid.length }, () =>
+    Array(grid[0].length).fill(false)
   );
 
   let totalSeaCount = 0;
@@ -113,16 +137,16 @@ export const checkIslands = (grid: CellData[][]) => {
 export const createEasyPuzzle = (): CellData[][] => {
   return easyPuzzle.map((row, rowIndex) =>
     row.map((number, columnIndex) => (
-    number === 0 ? {
-      rowIndex,
-      columnIndex,
-      color: "white"
-    } : {
-      rowIndex,
-      columnIndex,
-      color: "white",
-      number: number
-    }))
+      number === 0 ? {
+        rowIndex,
+        columnIndex,
+        color: "white"
+      } : {
+        rowIndex,
+        columnIndex,
+        color: "white",
+        number: number
+      }))
   );
 };
 
@@ -139,15 +163,15 @@ export const createBlankGrid = (): CellData[][] => {
 export const createSamplePuzzle = (): CellData[][] => {
   return samplePuzzle.map((row, rowIndex) =>
     row.map((number, columnIndex) => (
-    number === 0 ? {
-      rowIndex,
-      columnIndex,
-      color: "white"
-    } : {
-      rowIndex,
-      columnIndex,
-      color: "white",
-      number: number
-    }))
+      number === 0 ? {
+        rowIndex,
+        columnIndex,
+        color: "white"
+      } : {
+        rowIndex,
+        columnIndex,
+        color: "white",
+        number: number
+      }))
   );
 };
