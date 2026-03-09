@@ -8,20 +8,20 @@ const Grid = () => {
   //const [grid, setGrid] = useState(createEasyPuzzle);
 
   useEffect(() => {
-    checkIslands(grid);
-    checkSea(grid);
-    checkPools(grid);
+    if (checkIslands(grid) && checkSea(grid) && checkPools(grid)) {
+      alert("Congratulations, you solved the puzzle!");
+    }
   }, [grid])
 
   const toggleCell = (rowIndex: number, columnIndex: number) => {
     setGrid(prevGrid =>
       prevGrid.map((r, rIndex) =>
-        r.map((cell, cIndex) => 
+        r.map((cell, cIndex) =>
           rIndex === rowIndex && cIndex === columnIndex
-          ? { ...cell, color: cell.color === "white" ? "black" : "white" }
-          : cell
+            ? { ...cell, color: cell.color === "white" ? "black" : "white" }
+            : cell
         )
-    ));
+      ));
   };
 
   return (
