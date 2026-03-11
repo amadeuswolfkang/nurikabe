@@ -26,11 +26,12 @@ const floodFill = (
   startingRow: number,
   startingCol: number,
   visited: boolean[][],
-  color: CellColor
+  color: CellColor,
 ) => {
   const stack: [number, number][] = [[startingRow, startingCol]];
   let size = 0;
   let numsFound = 0;
+  let islandNum = 0;
 
   while (stack.length > 0) {
     const [row, col] = stack.pop()!;
@@ -46,6 +47,7 @@ const floodFill = (
 
     if (grid[row][col].number) {
       numsFound++;
+      islandNum = grid[row][col].number!;
     }
 
     stack.push([row - 1, col]);
@@ -53,7 +55,7 @@ const floodFill = (
     stack.push([row + 1, col]);
     stack.push([row, col - 1]);
   }
-  return {size, numsFound};
+  return {size, numsFound, islandNum};
 };
 
 export const checkPools = (grid: CellData[][]) => {
@@ -126,9 +128,9 @@ export const checkIslands = (grid: CellData[][]) => {
     for (let col = 0; col < grid[0].length; col++) {
       const cell = grid[row][col];
 
-      if (cell.number && !visited[row][col]) {
-        const {size: islandSize, numsFound} = floodFill(grid, row, col, visited, "white");
-        if (islandSize !== cell.number) {
+      if (cell.color === "white" && !visited[row][col]) {
+        const {size: islandSize, numsFound, islandNum} = floodFill(grid, row, col, visited, "white");
+        if (islandSize !== islandNum) {
           console.log("checkIslands false");
           return false;
         }
