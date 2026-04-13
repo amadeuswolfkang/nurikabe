@@ -15,10 +15,10 @@ const samplePuzzle: number[][] = [
   [3, 0, 3, 0, 0, 0, 0, 0, 0],
 ];
 
-const easyPuzzle: number[][] = [
-  [3, 0, 0],
+const stepOnePuzzle: number[][] = [
+  [1, 0, 1],
   [0, 0, 0],
-  [0, 0, 3]
+  [2, 0, 0]
 ];
 
 const floodFill = (
@@ -145,8 +145,8 @@ export const checkIslands = (grid: CellData[][]) => {
   return true;
 };
 
-export const createEasyPuzzle = (): CellData[][] => {
-  return easyPuzzle.map((row, rowIndex) =>
+export const createStepOnePuzzle = (): CellData[][] => {
+  return stepOnePuzzle.map((row, rowIndex) =>
     row.map((number, columnIndex) => (
       number === 0 ? {
         rowIndex,

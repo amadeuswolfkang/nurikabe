@@ -1,15 +1,29 @@
 .grid {
     display: grid;
-    grid-template-columns: repeat(9, 50px);
-    grid-template-rows: repeat(9, 50px);
+    /* grid-template-columns: repeat(9, 50px);
+    grid-template-rows: repeat(9, 50px); */
     /* grid-template-columns: repeat(3, 50px);
     grid-template-rows: repeat(3, 50px); */
     background-color: black;
     gap: 1px;
-    width: 459px;
-    height: 459px;
+    /* width: 459px;
+    height: 459px; */
     padding-left: 1px;
     padding-top: 1px;
     margin-top: 50px;
     text-align: center;
+}
+
+.grid-dimensions-3 {
+    grid-template-columns: repeat(3, 50px);
+    grid-template-rows: repeat(3, 50px);
+    width: 153px;
+    height: 153px;
+}
+
+.grid-dimensions-9 {
+    grid-template-columns: repeat(9, 50px);
+    grid-template-rows: repeat(9, 50px);
+    width: 459px;
+    height: 459px;
 }
