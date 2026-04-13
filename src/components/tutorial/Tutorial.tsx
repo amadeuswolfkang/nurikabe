@@ -15,7 +15,7 @@ const Tutorial = ({ isButtonEnabled }: TutorialProps) => {
         if (isPuzzleComplete) {
           isButtonEnabled(true);
         }
-      }, [isPuzzleComplete])
+      }, [isPuzzleComplete, isButtonEnabled])
 
     return (
         <div className="container">

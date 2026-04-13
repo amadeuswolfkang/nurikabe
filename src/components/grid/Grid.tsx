@@ -18,7 +18,7 @@ const Grid = ({ createPuzzle, dimensions, isPuzzleComplete }: GridProps) => {
     if (checkIslands(grid) && checkSea(grid) && checkPools(grid)) {
       isPuzzleComplete(true);
     }
-  }, [grid])
+  }, [grid, isPuzzleComplete])
 
   const toggleCell = (rowIndex: number, columnIndex: number) => {
     setGrid(prevGrid =>
