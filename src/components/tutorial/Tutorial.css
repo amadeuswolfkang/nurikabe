@@ -1,0 +1,8 @@
+.container {
+    margin: 20px;
+}
+
+.grid-container {
+    display: flex;
+    justify-content: center;
+}

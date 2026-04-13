@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
 import "./Grid.css";
-import { createSamplePuzzle, checkIslands, checkSea, checkPools } from "../../utils/gridUtils";
+import { checkIslands, checkSea, checkPools } from "../../utils/gridUtils";
 import { Cell } from "../cell/Cell";
+import { CellData } from '../cell/types';
 
-const Grid = () => {
-  const [grid, setGrid] = useState(createSamplePuzzle);
+type GridProps = {
+  createPuzzle: () => CellData[][];
+  dimensions: string;
+  isPuzzleComplete: (T: boolean) => void;
+}
+
+const Grid = ({ createPuzzle, dimensions, isPuzzleComplete }: GridProps) => {
+  const [grid, setGrid] = useState(createPuzzle());
   //const [grid, setGrid] = useState(createEasyPuzzle);
 
   useEffect(() => {
     if (checkIslands(grid) && checkSea(grid) && checkPools(grid)) {
-      alert("Congratulations, you solved the puzzle!");
+      isPuzzleComplete(true);
     }
-  }, [grid])
+  }, [grid, isPuzzleComplete])
 
   const toggleCell = (rowIndex: number, columnIndex: number) => {
     setGrid(prevGrid =>
@@ -25,7 +32,7 @@ const Grid = () => {
   };
 
   return (
-    <div className="grid">
+    <div className={ `grid grid-dimensions-${dimensions}`}>
       {grid.map((row) =>
         row.map(cell =>
           <Cell
